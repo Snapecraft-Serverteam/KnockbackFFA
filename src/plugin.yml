@@ -1,0 +1,10 @@
+name: KbFFA
+version: 1.6
+author: MayusYT
+main: main.Main
+commands:
+    kbffa:
+        description: All commands for KBFFA.
+        usage: /kbffa <setup[2-4]|lobby|leave>
+    build:
+        description: Buildmode in the Lobby!
