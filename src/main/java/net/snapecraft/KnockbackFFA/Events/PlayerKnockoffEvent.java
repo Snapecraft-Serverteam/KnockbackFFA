@@ -1,5 +1,7 @@
-package main;
+package net.snapecraft.KnockbackFFA.Events;
 
+import net.snapecraft.KnockbackFFA.Util.Config;
+import net.snapecraft.KnockbackFFA.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

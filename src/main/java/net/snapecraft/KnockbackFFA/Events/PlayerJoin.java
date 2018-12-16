@@ -1,7 +1,8 @@
-package main;
+package net.snapecraft.KnockbackFFA.Events;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.snapecraft.KnockbackFFA.Util.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

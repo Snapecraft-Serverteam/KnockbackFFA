@@ -1,15 +1,16 @@
-package main;
+package net.snapecraft.KnockbackFFA.Command;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.snapecraft.KnockbackFFA.Util.Config;
+import net.snapecraft.KnockbackFFA.Util.GetItems;
+import net.snapecraft.KnockbackFFA.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class commands implements CommandExecutor {
 

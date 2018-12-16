@@ -1,13 +1,15 @@
-package main;
+package net.snapecraft.KnockbackFFA;
 
-import net.md_5.bungee.protocol.packet.Chat;
+import net.snapecraft.KnockbackFFA.Command.Buildmode;
+import net.snapecraft.KnockbackFFA.Command.commands;
+import net.snapecraft.KnockbackFFA.Events.*;
+import net.snapecraft.KnockbackFFA.Util.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class Main extends JavaPlugin {
 

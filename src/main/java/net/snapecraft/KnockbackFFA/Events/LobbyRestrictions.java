@@ -1,7 +1,6 @@
-package main;
+package net.snapecraft.KnockbackFFA.Events;
 
-import org.bukkit.Material;
-import org.bukkit.block.Sign;
+import net.snapecraft.KnockbackFFA.Command.Buildmode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

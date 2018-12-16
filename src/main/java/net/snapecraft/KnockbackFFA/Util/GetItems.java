@@ -1,4 +1,4 @@
-package main;
+package net.snapecraft.KnockbackFFA.Util;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
