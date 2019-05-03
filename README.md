@@ -1,3 +1,3 @@
 # KnockbackFFA
 
-Spielmodus auf snapecraft.ddns.net
+Spielmodus auf snapecraft.net
