@@ -20,7 +20,7 @@ public class GetItems {
                 ItemStack stick = new ItemStack(Material.STICK);
                 ItemMeta stickm = stick.getItemMeta();
                 stickm.setDisplayName("§5Knockback§r-§aStick");
-                stickm.addEnchant(Enchantment.KNOCKBACK, 10, true);
+                stickm.addEnchant(Enchantment.KNOCKBACK, 5, true);
                 stick.setItemMeta(stickm);
                 p.getInventory().addItem(stick);
             } else {
@@ -40,7 +40,7 @@ public class GetItems {
                 ItemStack stick = new ItemStack(Material.STICK);
                 ItemMeta stickm = stick.getItemMeta();
                 stickm.setDisplayName("§5Knockback§r-§aStick");
-                stickm.addEnchant(Enchantment.KNOCKBACK, 10, true);
+                stickm.addEnchant(Enchantment.KNOCKBACK, 5, true);
                 stick.setItemMeta(stickm);
                 p.getInventory().addItem(stick);
             } else {
