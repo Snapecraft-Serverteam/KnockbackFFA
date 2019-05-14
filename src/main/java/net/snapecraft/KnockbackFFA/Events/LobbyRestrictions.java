@@ -15,11 +15,11 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class LobbyRestrictions implements Listener {
 
-    @EventHandler
-    public void onHunger(FoodLevelChangeEvent e) {
-        e.setCancelled(true);
-        e.setFoodLevel(20);
-    }
+//    @EventHandler
+//    public void onHunger(FoodLevelChangeEvent e) {
+//        e.setCancelled(true);
+//        e.setFoodLevel(20);
+//    }
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
