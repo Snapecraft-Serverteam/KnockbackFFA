@@ -16,14 +16,12 @@ public class PlayerKnockoffEvent implements Listener {
     int ctdwn = 1;
     public static List<Player> knockedPlayers = new ArrayList<>();
     @EventHandler
-    public void onKnockoff(EntityDamageByEntityEvent e) {
+    public void onKnockoff(final EntityDamageByEntityEvent e) {
 
         if(e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
-            Player victim = (Player)e.getEntity();
-
 
             //Leben wiederherstellen
-            victim.setHealth(20.0);
+            ((Player)e.getEntity()).setHealth(20.0);
 
             //Damage auf der Plattform verbieten
             if(e.getEntity().getLocation().getBlockY() == Config.getArenaSpawn(Config.getArenaNameFromWorldName(e.getEntity().getWorld().getName())).getBlockY()) {
@@ -32,16 +30,14 @@ public class PlayerKnockoffEvent implements Listener {
 
             //Todeshöhe abfragen
             else if(e.getEntity().getLocation().getBlockY() != Config.getDeathHeightForWorld(e.getEntity().getWorld().getName())) {
-                Player murderer = (Player)e.getDamager();
-
-
-
-                knockedPlayers.add(victim);
+                knockedPlayers.add((Player)e.getEntity());
                 new BukkitRunnable() {
                     @Override
                     public void run() {
                         ctdwn++;
                         if(ctdwn >= 5) {
+                            Player victim = (Player)e.getEntity();
+                            Player murderer = (Player)e.getDamager();
                             cancel();
                             ctdwn = 1;
                             e.setCancelled(true);
