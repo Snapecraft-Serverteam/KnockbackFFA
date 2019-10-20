@@ -1,4 +1,4 @@
-package net.snapecraft.KnockbackFFA.Command;
+package net.snapecraft.KnockbackFFA.command;
 
 import net.snapecraft.KnockbackFFA.Main;
 import org.bukkit.command.Command;

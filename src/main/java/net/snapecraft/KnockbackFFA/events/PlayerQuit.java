@@ -1,4 +1,4 @@
-package net.snapecraft.KnockbackFFA.Events;
+package net.snapecraft.KnockbackFFA.events;
 
 import net.snapecraft.KnockbackFFA.Main;
 import org.bukkit.event.EventHandler;

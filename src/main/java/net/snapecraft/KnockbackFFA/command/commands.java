@@ -1,9 +1,9 @@
-package net.snapecraft.KnockbackFFA.Command;
+package net.snapecraft.KnockbackFFA.command;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.snapecraft.KnockbackFFA.Util.Config;
-import net.snapecraft.KnockbackFFA.Util.GetItems;
+import net.snapecraft.KnockbackFFA.util.Config;
+import net.snapecraft.KnockbackFFA.util.GetItems;
 import net.snapecraft.KnockbackFFA.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -67,7 +67,7 @@ public class commands implements CommandExecutor {
                     p.sendMessage("Schritt 2: Arena adden");
                     p.sendMessage("-----------------------");
                     p.sendMessage("Arenen sind Welten, in denen sich Spieler bekämpfen");
-                    p.sendMessage(ChatColor.RED + ">> " + ChatColor.GREEN + "Erstelle eine Welt mit Multiverse, gehe zum Spawnpunkt, drücke den Knopf, gebe einen Namen ein und sende den Command");
+                    p.sendMessage(ChatColor.RED + ">> " + ChatColor.GREEN + "Erstelle eine Welt mit Multiverse, gehe zum Spawnpunkt, drücke den Knopf, gebe einen Namen ein und sende den command");
                     TextComponent message1 = new TextComponent( "[§aSetzen§r] " );
                     message1.setClickEvent( new ClickEvent( ClickEvent.Action.SUGGEST_COMMAND, "/kbffa setarena " ));
                     p.sendMessage("/kbffa setup 2, um diesen Schritt zu wiederholen");

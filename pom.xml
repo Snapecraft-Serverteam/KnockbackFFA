@@ -4,18 +4,42 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.ddns.snapecraft</groupId>
+    <groupId>net.snapecraft</groupId>
     <artifactId>KnockbackFFA</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>2.0</version>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <echo>ANT TASK - copying files....</echo>
+                                <echo>${project.basedir}</echo>
+                                <copy todir="${project.basedir}/server/plugins" overwrite="true" flatten="true">
+                                    <fileset dir="${project.basedir}/target" includes="${project.artifactId}-${project.version}.jar" >
+                                        <include name="*.jar" />
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -47,4 +71,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-</project>
+        </project>

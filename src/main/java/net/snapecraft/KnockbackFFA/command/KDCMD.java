@@ -1,6 +1,6 @@
-package net.snapecraft.KnockbackFFA.Command;
+package net.snapecraft.KnockbackFFA.command;
 
-import net.snapecraft.KnockbackFFA.Util.Config;
+import net.snapecraft.KnockbackFFA.util.Config;
 import net.snapecraft.KnockbackFFA.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

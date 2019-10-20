@@ -1,15 +1,15 @@
-package net.snapecraft.KnockbackFFA.Util;
+package net.snapecraft.KnockbackFFA.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Config {
 
@@ -37,28 +37,111 @@ public class Config {
         Config.addDefault("kits.starterItems", starter);
         Config.addDefault("settings.game.GetHunger", false);
         Config.options().copyDefaults(true);
+
+        try {
+            save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        reload();
     }
 
     public static Boolean getSetting(String name) {
         return Config.getBoolean("settings.game.GetHunger");
     }
 
-    public static HashMap<String, List<String>> getKits() {
+    public static HashMap<String, List<Object>> getKits() {
 
-        HashMap<String, List<String>> kits = new HashMap<>();
+        HashMap<String, List<Object>> kits = new HashMap<>();
 
             for(String kit : Config.getConfigurationSection("kits").getKeys(false)) {
-                kits.put(kit, (List<String>) Config.getList("kits." + kit));
+                kits.put(kit, (List<Object>) Config.getList("kits." + kit));
             }
             return kits;
 
 
     }
 
-    public static List<String> getItemsOfKit(String kitName) {
-        return getKits().get(kitName);
+    public static Set<String> getKitNames() {
+        return getKits().keySet();
     }
 
+    public static String getKitByDisplayName(String displayName) {
+        Iterator it = getKits().entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if(getDisplayNameOfKit((String)pair.getKey()).equalsIgnoreCase(displayName)) {
+                return (String) pair.getKey();
+            }
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        return "";
+    }
+
+    public static List<Material> getItemsOfKit(String kitName) {
+        List<Object> objectList = getKits().get(kitName);
+        List<String> stringList = objectList.stream()
+                .map(object -> Objects.toString(object, null))
+                .collect(Collectors.toList());
+
+        List<Material> materialList = new ArrayList<>();
+        for(String s : stringList) {
+            if(s.startsWith("+") || s.matches("^-?\\d+$") || s.startsWith("/")) {
+                //skip
+            } else {
+                materialList.add(Material.valueOf(s));
+            }
+        }
+
+        return materialList;
+    }
+
+    public static String getDisplayNameOfKit(String kitName) {
+        try {
+            List<Object> objectList = getKits().get(kitName);
+            List<String> stringList = objectList.stream()
+                    .map(object -> Objects.toString(object, null))
+                    .collect(Collectors.toList());
+            for(String s : stringList) {
+                if(s.startsWith("/")) {
+                    return s.replace("/", "");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "N/A";
+    }
+
+    public static int getPriceOfKit(String kitName) {
+        List<Object> objectList = getKits().get(kitName);
+
+        List<String> stringList = objectList.stream()
+                .map(object -> Objects.toString(object, null))
+                .collect(Collectors.toList());
+
+        for(String s : stringList) {
+            if(s.matches("^-?\\d+$")) { //Check if integer
+                return Integer.parseInt(s);
+            }
+        }
+        return 0;
+    }
+
+    public static Material getIconOfKit(String kitName) {
+        List<Object> objectList = getKits().get(kitName);
+
+        List<String> stringList = objectList.stream()
+                .map(object -> Objects.toString(object, null))
+                .collect(Collectors.toList());
+
+        for(String s : stringList) {
+            if(s.startsWith("+")) {
+                return Material.valueOf(s.replace("+", ""));
+            }
+        }
+        return Material.ENDER_STONE;
+    }
 
     public static void setLobby(Location loc) {
         Config.set("settings.Lobby.WORLD", loc.getWorld().getName());
@@ -67,7 +150,6 @@ public class Config {
         Config.set("settings.Lobby.Z", loc.getZ());
         Config.set("settings.Lobby.YAW", loc.getYaw());
         Config.set("settings.Lobby.PITCH", loc.getPitch());
-
         try{
             save();
             reload();

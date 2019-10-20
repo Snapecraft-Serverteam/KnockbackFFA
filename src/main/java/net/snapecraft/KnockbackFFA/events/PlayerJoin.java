@@ -1,8 +1,9 @@
-package net.snapecraft.KnockbackFFA.Events;
+package net.snapecraft.KnockbackFFA.events;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.snapecraft.KnockbackFFA.Util.Config;
+import net.snapecraft.KnockbackFFA.kits.KitGui;
+import net.snapecraft.KnockbackFFA.util.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,7 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+        KitGui.currentPage.put(e.getPlayer(), 0);
         e.getPlayer().getInventory().clear();
         e.getPlayer().setHealth(20.0);
         e.getPlayer().sendMessage("§aWillkommen auf KnockbackFFA!");

@@ -1,11 +1,14 @@
 package net.snapecraft.KnockbackFFA;
 
-import net.snapecraft.KnockbackFFA.Command.Buildmode;
-import net.snapecraft.KnockbackFFA.Command.commands;
-import net.snapecraft.KnockbackFFA.Events.*;
-import net.snapecraft.KnockbackFFA.Util.Config;
+import net.snapecraft.KnockbackFFA.command.Buildmode;
+import net.snapecraft.KnockbackFFA.command.commands;
+import net.snapecraft.KnockbackFFA.events.*;
+import net.snapecraft.KnockbackFFA.kits.KitGuiCommand;
+import net.snapecraft.KnockbackFFA.kits.KitGuiListener;
+import net.snapecraft.KnockbackFFA.util.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,12 +25,16 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         ConsoleCommandSender console = this.getServer().getConsoleSender();
 
-        console.sendMessage(ChatColor.BLUE +                "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
-        console.sendMessage(ChatColor.BLUE +                "+-                         -+");
-        console.sendMessage(ChatColor.YELLOW +              "+-   KnockbackFFA v.1.0    -+");
-        console.sendMessage(ChatColor.LIGHT_PURPLE +        "+-        by Mayus         -+");
-        console.sendMessage(ChatColor.BLUE +                "+-                         -+");
-        console.sendMessage(ChatColor.BLUE +                "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
+        console.sendMessage(" \n\n___  __    ________  ________ ________ ________     \n" +
+                "|\\  \\|\\  \\ |\\   __  \\|\\  _____\\\\  _____\\\\   __  \\    \n" +
+                "\\ \\  \\/  /|\\ \\  \\|\\ /\\ \\  \\__/\\ \\  \\__/\\ \\  \\|\\  \\   \n" +
+                " \\ \\   ___  \\ \\   __  \\ \\   __\\\\ \\   __\\\\ \\   __  \\  \n" +
+                "  \\ \\  \\\\ \\  \\ \\  \\|\\  \\ \\  \\_| \\ \\  \\_| \\ \\  \\ \\  \\ \n" +
+                "   \\ \\__\\\\ \\__\\ \\_______\\ \\__\\   \\ \\__\\   \\ \\__\\ \\__\\\n" +
+                "    \\|__| \\|__|\\|_______|\\|__|    \\|__|    \\|__|\\|__|\n" +
+                "                                                     \n" +
+                "                                                     \n" +
+                "                                                     ");
 
         init();
     }
@@ -37,12 +44,21 @@ public class Main extends JavaPlugin {
         Config.setDefaults();
 
 
+        System.out.println("kits: " + Config.getKits().toString());
+        System.out.println("items: " + Config.getDisplayNameOfKit("starterItems"));
+
+
         Bukkit.getPluginManager().registerEvents(new PlayerKnockoffEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
         Bukkit.getPluginManager().registerEvents(new LobbyRestrictions(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);
+
+        Bukkit.getPluginManager().registerEvents(new KitGuiListener(), this);
+
         getCommand("kbffa").setExecutor(new commands());
+        getCommand("kit").setExecutor(new KitGuiCommand());
+        getCommand("kits").setExecutor(new KitGuiCommand());
         getCommand("build").setExecutor(new Buildmode());
     }
 

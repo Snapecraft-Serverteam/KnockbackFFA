@@ -1,4 +1,4 @@
-package net.snapecraft.KnockbackFFA.Util;
+package net.snapecraft.KnockbackFFA.util;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -11,9 +11,8 @@ import java.util.List;
 public class GetItems {
 
     public static void getWorldItems(Player p) {
-        List<String> sl = Config.getItemsOfKit("starterItems");
-        for(String s : sl) {
-            Material material = Material.getMaterial(s);
+        List<Material> ml = Config.getItemsOfKit("starterItems");
+        for(Material material : ml) {
 
             //ToDo: Special Items hier einfügen
             if(material.equals(Material.STICK)) {
@@ -31,9 +30,8 @@ public class GetItems {
     }
 
     public static void getWorldItems(Player p, String kit) {
-        List<String> sl = Config.getItemsOfKit(kit);
-        for(String s : sl) {
-            Material material = Material.getMaterial(s);
+        List<Material> ml = Config.getItemsOfKit(kit);
+        for(Material material : ml) {
 
             //ToDo: Special Items hier einfügen
             if(material.equals(Material.STICK)) {
